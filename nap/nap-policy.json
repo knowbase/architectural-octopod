@@ -1,0 +1,226 @@
+{
+  "id": "3eba34f6-ff1e-4b3e-9d88-c9560cf7d8df",
+  "specification": {
+    "ParentPolicy": "",
+    "HttpProtocolRules": {
+      "HttpGenericChecks": [
+        {
+          "HttpGenericCheckName": "ContentLengthNotPositiveNum",
+          "HttpGenericCheckDisable": false
+        }
+      ],
+      "HttpGenericChecksViolationAction": "",
+      "EncodingChecks": null,
+      "MethodChecks": {
+        "MethodsAllowedList": [],
+        "MethodDisallowedAction": "BLOCK_ONLY"
+      },
+      "HeaderChecks": {
+        "AllowMissingHostHeaderValue": false
+      },
+      "HeaderAttributes": [],
+      "HeaderViolationDefaultAction": "",
+      "ResponseCodesAllowed": [],
+      "ResponseCodesDisallowedAction": "BLOCK_ONLY"
+    },
+    "Evasions": {
+      "Name": "",
+      "ProtectionServices": {
+        "WAFProtectionCookieModificationAction": "",
+        "AllowInspectionBufferOverflowRequests": true,
+        "InspectionBufferOverflowAction": "BLOCK_ONLY"
+      },
+      "ProtocolBased": {
+        "HttpProtocolEvasionAction": "ALERT_ONLY",
+        "HttpProtocolEvasionOverrides": [
+          {
+            "HttpProtocolEvasionName": "MultipleDecoding",
+            "HttpProtocolEvasionDisable": false
+          }
+        ]
+      }
+    },
+    "FileRules": {
+      "ExecutableFieProtections": {
+        "DisallowExecutableFilesInBody": true,
+        "ExecutableFilesInBodyAction": "BLOCK_ONLY",
+        "DisallowExecutableFilesInParameters": false,
+        "ExecutableFileParametersNames": [],
+        "ExecutableFilesInParametersAction": "BLOCK_ONLY"
+      },
+      "FileExtensionProtections": {
+        "FileExtensionsAllowedAdditionalEntries": [
+          {
+            "FileExtension": "*",
+            "CheckInResponse": true
+          }
+        ],
+        "FileExtensionsAllowedRemovedEntries": [],
+        "FileExtensionsDisallowedAdditionalEntries": [],
+        "FileExtensionsDisallowedRemovedEntries": [],
+        "FileExtensionsDisallowedDefaultAction": "BLOCK_ONLY",
+        "FileExtensionsUnmatchedAction": "NO_ACTION"
+      }
+    },
+    "OverlayProtocols": {
+      "id": "8d301a45-5844-49b0-a6ba-f54363b4ef09",
+      "specification": null,
+      "metadata": {
+        "name": "8d301a45-5844-49b0-a6ba-f54363b4ef09",
+        "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+        "labels": [],
+        "annotations": [],
+        "createTime": "2023-08-03T17:31:21Z",
+        "modifiedTime": "2023-08-03T17:31:21Z",
+        "status": "SAVED"
+      }
+    },
+    "NegativeSecurity": {
+      "SignatureSetsProtections": {
+        "SignatureSetsApplied": [
+          {
+            "SignatureSet": {
+              "id": "AttackType~HTTP_Response_Splitting_Signatures",
+              "FilterKeyValues": [],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "HTTP Response Splitting Signatures",
+                "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+                "labels": [
+                  {
+                    "key": "AttackType",
+                    "value": "HTTP Response Splitting Signatures"
+                  }
+                ],
+                "annotations": [],
+                "createTime": "2023-08-03T17:31:22Z",
+                "modifiedTime": "2023-08-03T17:31:22Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          },
+          {
+            "SignatureSet": {
+              "id": "AttackType~Server Side Code_Injection_Signatures",
+              "FilterKeyValues": [],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "Server Side Code Injection Signatures",
+                "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+                "labels": [
+                  {
+                    "key": "AttackType",
+                    "value": "Server Side Code Injection Signatures"
+                  }
+                ],
+                "annotations": [],
+                "createTime": "2023-08-03T17:31:22Z",
+                "modifiedTime": "2023-08-03T17:31:22Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          },
+          {
+            "SignatureSet": {
+              "id": "AttackType~Information_Leakage_Signatures",
+              "FilterKeyValues": [],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "Information Leakage Signatures",
+                "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+                "labels": [
+                  {
+                    "key": "AttackType",
+                    "value": "Information Leakage Signatures"
+                  }
+                ],
+                "annotations": [],
+                "createTime": "2023-08-03T17:31:23Z",
+                "modifiedTime": "2023-08-03T17:31:23Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          },
+          {
+            "SignatureSet": {
+              "id": "AttackType~Other Application_Attacks_Signatures",
+              "FilterKeyValues": [],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "Other Application Attacks Signatures",
+                "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+                "labels": [
+                  {
+                    "key": "AttackType",
+                    "value": "Other Application Attacks Signatures"
+                  }
+                ],
+                "annotations": [],
+                "createTime": "2023-08-03T17:31:24Z",
+                "modifiedTime": "2023-08-03T17:31:24Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          },
+          {
+            "SignatureSet": {
+              "id": "BasicType~Generic_Detection_Signatures_(High/Medium_Accuracy)",
+              "FilterKeyValues": [],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "Generic Detection Signatures (High/Medium Accuracy)",
+                "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+                "labels": [
+                  {
+                    "key": "BasicType",
+                    "value": "Generic Detection Signatures (High/Medium Accuracy)"
+                  }
+                ],
+                "annotations": [],
+                "createTime": "2023-08-03T17:31:27Z",
+                "modifiedTime": "2023-08-03T17:31:27Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          }
+        ],
+        "DefaultSignatureSetMatchAction": ""
+      },
+      "SignaturesProtections": null
+    },
+    "TrustLists": {
+      "id": "428f707c-fbde-4bdb-a48d-4c42ea91708b",
+      "specification": null,
+      "metadata": {
+        "name": "428f707c-fbde-4bdb-a48d-4c42ea91708b",
+        "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+        "labels": [],
+        "annotations": [],
+        "createTime": "2023-08-03T17:31:20Z",
+        "modifiedTime": "2023-08-03T17:31:20Z",
+        "status": "SAVED"
+      }
+    },
+    "PolicyOverrideRules": []
+  },
+  "metadata": {
+    "name": "nginxpluspolicy",
+    "namespace": "37916780-0303-413e-bcf0-f68ea88fe2f1",
+    "labels": [],
+    "annotations": [],
+    "createTime": "2023-08-03T17:31:28Z",
+    "modifiedTime": "2023-08-03T18:03:56Z",
+    "createProvider": "NAP",
+    "status": "CONVERTED"
+  }
+}

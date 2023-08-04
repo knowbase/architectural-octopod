@@ -1,0 +1,306 @@
+{
+  "id": "daf1e328-cf09-4e93-9f73-de40bf90bdaa",
+  "specification": {
+    "ParentPolicy": "",
+    "HttpProtocolRules": {
+      "HttpGenericChecks": [
+        {
+          "HttpGenericCheckName": "UnparsableRequestContent",
+          "HttpGenericCheckDisable": false
+        },
+        {
+          "HttpGenericCheckName": "BadHttpVersion",
+          "HttpGenericCheckDisable": false
+        },
+        {
+          "HttpGenericCheckName": "ContentLengthNotPositiveNum",
+          "HttpGenericCheckDisable": true
+        },
+        {
+          "HttpGenericCheckName": "CrlfBeforeRequest",
+          "HttpGenericCheckDisable": true
+        },
+        {
+          "HttpGenericCheckName": "BadMultipart",
+          "HttpGenericCheckDisable": true
+        },
+        {
+          "HttpGenericCheckName": "ChunkedWithContentLength",
+          "HttpGenericCheckDisable": true
+        }
+      ],
+      "HttpGenericChecksViolationAction": "",
+      "EncodingChecks": {
+        "HttpEncodingApplicationLanguage": "auto-detect",
+        "HttpEncodingLanguageFailureAction": ""
+      },
+      "MethodChecks": {
+        "MethodsAllowedList": [
+          "HEAD",
+          "POST",
+          "GET"
+        ],
+        "MethodDisallowedAction": ""
+      },
+      "HeaderChecks": {
+        "HeadersMaxNum": 20,
+        "AllowBadHostHeaderValue": true,
+        "AllowMultipleHostHeaders": true,
+        "AllowMissingHostHeaderValue": false,
+        "AllowMultipleContentLengthHeaders": false
+      },
+      "HeaderAttributes": [
+        {
+          "HeaderName": "transfer-encoding",
+          "DecodeAsBase64": false,
+          "IsRequired": false,
+          "ActionOnMissingRequired": "ALERT_AND_BLOCK",
+          "DisallowRepeated": true,
+          "ActionOnRepeated": "ALERT_ONLY"
+        },
+        {
+          "HeaderName": "referer",
+          "DecodeAsBase64": false,
+          "IsRequired": false,
+          "ActionOnMissingRequired": "ALERT_AND_BLOCK",
+          "DisallowRepeated": false,
+          "ActionOnRepeated": "ALERT_ONLY"
+        },
+        {
+          "HeaderName": "cookie",
+          "IsRequired": false,
+          "ActionOnMissingRequired": "ALERT_AND_BLOCK",
+          "DisallowRepeated": false,
+          "ActionOnRepeated": "ALERT_ONLY"
+        },
+        {
+          "HeaderName": "authorization",
+          "DecodeAsBase64": false,
+          "IsRequired": false,
+          "ActionOnMissingRequired": "ALERT_AND_BLOCK",
+          "DisallowRepeated": false,
+          "ActionOnRepeated": "ALERT_ONLY"
+        },
+        {
+          "HeaderName": "*",
+          "DecodeAsBase64": false,
+          "IsRequired": false,
+          "ActionOnMissingRequired": "ALERT_AND_BLOCK",
+          "DisallowRepeated": false,
+          "ActionOnRepeated": "ALERT_ONLY"
+        }
+      ],
+      "HeaderViolationDefaultAction": "",
+      "ResponseCodesAllowed": [
+        400,
+        401,
+        404,
+        407,
+        417,
+        503
+      ],
+      "ResponseCodesDisallowedAction": "ALERT_AND_BLOCK"
+    },
+    "Evasions": {
+      "Name": "",
+      "ProtectionServices": {
+        "AllowModificationWAFProtectionCookie": true,
+        "WAFProtectionCookieModificationAction": "ALERT_AND_BLOCK",
+        "AllowInspectionBufferOverflowRequests": true,
+        "InspectionBufferOverflowAction": "ALERT_AND_BLOCK"
+      },
+      "ProtocolBased": {
+        "HttpDeobfuscationMaxPasses": 3,
+        "HttpProtocolEvasionAction": "ALERT_AND_BLOCK",
+        "HttpProtocolEvasionOverrides": [
+          {
+            "HttpProtocolEvasionName": "BadUnescape",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "ApacheWhitespace",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "BareByteDecoding",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "IISUnicodeCodepoints",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "IISBackslashes",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "PercentUDecoding",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "MultipleDecoding",
+            "HttpProtocolEvasionDisable": true
+          },
+          {
+            "HttpProtocolEvasionName": "DirectoryTraversals",
+            "HttpProtocolEvasionDisable": true
+          }
+        ]
+      }
+    },
+    "FileRules": {
+      "ExecutableFieProtections": {
+        "DisallowExecutableFilesInBody": false,
+        "ExecutableFilesInBodyAction": "",
+        "DisallowExecutableFilesInParameters": false,
+        "ExecutableFileParametersNames": [],
+        "ExecutableFilesInParametersAction": ""
+      },
+      "FileExtensionProtections": {
+        "FileExtensionsAllowedAdditionalEntries": [
+          {
+            "FileExtension": "filetype_example",
+            "CheckInResponse": false
+          }
+        ],
+        "FileExtensionsAllowedRemovedEntries": [],
+        "FileExtensionsDisallowedAdditionalEntries": [],
+        "FileExtensionsDisallowedRemovedEntries": [],
+        "FileExtensionsDisallowedDefaultAction": "",
+        "FileExtensionsUnmatchedAction": "NO_ACTION"
+      }
+    },
+    "OverlayProtocols": {
+      "id": "base~overlayprotocols",
+      "specification": {
+        "OverlayJsonProtections": {
+          "allowMalformedJson": false,
+          "MalformedJsonAction": "ALERT_ONLY"
+        },
+        "OverlayXmlProtections": {
+          "allowMalformedXml": false,
+          "MalformedXmlAction": "ALERT_ONLY"
+        }
+      },
+      "metadata": {
+        "name": "Base OverlayProtocols",
+        "namespace": "c5a9d706-0e8c-4529-891d-0a9fade99f0a",
+        "labels": [],
+        "annotations": [],
+        "createTime": "2023-08-01T22:21:17Z",
+        "modifiedTime": "2023-08-01T22:21:17Z",
+        "status": "SAVED"
+      }
+    },
+    "NegativeSecurity": {
+      "SignatureSetsProtections": {
+        "SignatureSetsApplied": [
+          {
+            "SignatureSet": {
+              "id": "base~signaturesets",
+              "FilterKeyValues": [
+                {
+                  "key": "AttackType",
+                  "value": "Command Execution Signatures"
+                }
+              ],
+              "SpecificSignaturesAdded": [],
+              "SpecificSignaturesRemoved": [],
+              "metadata": {
+                "name": "Base SignatureSets",
+                "namespace": "c5a9d706-0e8c-4529-891d-0a9fade99f0a",
+                "labels": [],
+                "annotations": [],
+                "createTime": "2023-08-01T22:21:19Z",
+                "modifiedTime": "2023-08-01T22:21:19Z",
+                "status": "SAVED"
+              }
+            },
+            "DefaultSignatureSetActionOverride": "ALERT_ONLY"
+          }
+        ],
+        "DefaultSignatureSetMatchAction": ""
+      },
+      "SignaturesProtections": null
+    },
+    "DataProtection": {
+      "CreditCardDataProtections": {
+        "CCDetectionEnabled": true,
+        "CCDigitsToExpose": 4
+      },
+      "SocialSecurityDataProtections": {
+        "SSNDetectionEnabled": true,
+        "SSNDigitsToExpose": 4
+      },
+      "CustomPatternDataProtections": null,
+      "ExceptionDataPatterns": null,
+      "FileContentDataInspections": {
+        "FiletypesToInspect": [
+          "OFFICE2007",
+          "PDF",
+          "MACHO"
+        ]
+      },
+      "DataProtectionResponseAction": "ALERT_AND_BLOCK"
+    },
+    "TrustLists": {
+      "id": "base~trustlists",
+      "specification": {
+        "AllowIpListCustomizations": {
+          "AllowListAdditionalEntries": [
+            {
+              "Description": "Allowed Ips Description",
+              "IpAddressOrSubnet": "192.168.0.1"
+            }
+          ],
+          "AllowListRemovedEntries": []
+        },
+        "DenyIpListCustomizations": {
+          "DenyListAdditionalEntries": [
+            {
+              "Description": "Deny IPs Description",
+              "IpAddressOrSubnet": "192.168.0.1"
+            }
+          ],
+          "DenyListRemovedEntries": [],
+          "DenyListMatchAction": "BLOCK"
+        }
+      },
+      "metadata": {
+        "name": "Base TrustLists",
+        "namespace": "c5a9d706-0e8c-4529-891d-0a9fade99f0a",
+        "labels": [],
+        "annotations": [],
+        "createTime": "2023-08-01T22:21:11Z",
+        "modifiedTime": "2023-08-01T22:21:11Z",
+        "status": "SAVED"
+      }
+    },
+    "LoggingCustomization": {
+      "id": "base~loggingcustomization",
+      "specification": {
+        "AllowUnmaskedCookiesInLogs": false,
+        "AllowUnmaskedCCInLogs": false
+      },
+      "metadata": {
+        "name": "Base LoggingCustomization",
+        "namespace": "c5a9d706-0e8c-4529-891d-0a9fade99f0a",
+        "labels": [],
+        "annotations": [],
+        "createTime": "2023-08-01T22:21:15Z",
+        "modifiedTime": "2023-08-01T22:21:15Z",
+        "status": "SAVED"
+      }
+    },
+    "PolicyOverrideRules": []
+  },
+  "metadata": {
+    "name": "BaseAppSec",
+    "namespace": "c5a9d706-0e8c-4529-891d-0a9fade99f0a",
+    "labels": [],
+    "annotations": [],
+    "createTime": "2023-08-01T22:21:22Z",
+    "modifiedTime": "2023-08-01T22:22:07Z",
+    "status": "CONVERTED"
+  }
+}
